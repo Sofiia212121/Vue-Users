@@ -5,7 +5,7 @@ import Modal from '@/components/Modal.vue';
 import UserFormBody from '@/components/UserFormBody.vue';
 import { register } from '@/api/auth';
 
-// const modalRef = ref(null);
+const modalRef = ref(null);
 const users = ref([]);
 const form = ref(null);
 const firstName = ref('');
@@ -67,16 +67,18 @@ const addUser = async () => {
         return;
     }
 
-    if (firstName.value && lastName.value && email.value && phone.value && password.value && passwordConfirmation.value) {
-        // modalRef.value = false;
+    firstName.value = '';
+    lastName.value = '';
+    email.value = '';
+    phone.value = '';
+    password.value = '';
+    passwordConfirmation.value = '';
 
-        firstName.value = '';
-        lastName.value = '';
-        email.value = '';
-        phone.value = '';
-        password.value = '';
-    }
+    const modalElement = modalRef.value.$el;
+    const bootstrapModal = bootstrap.Modal.getInstance(modalElement);
+    bootstrapModal.hide();
 
+    alert('User successfully added!');
     getUsersList();
 };
 </script>
@@ -108,7 +110,13 @@ const addUser = async () => {
     </table>
     <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addUserModal">Add User</button>
 
-    <Modal modalId="addUserModal" modalTitle="Add User" sucessBtn="Add" @modalSuccessClick="addUser">
+    <Modal
+        ref="modalRef"
+        modalId="addUserModal"
+        modalTitle="Add User"
+        sucessBtn="Add"
+        @modalSuccessClick="addUser"
+    >
         <form ref="form">
             <UserFormBody
                 v-model:firstName="firstName"
