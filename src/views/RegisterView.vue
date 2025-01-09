@@ -46,14 +46,8 @@ const handleSubmit = async () => {
 <template>
   <CenteredContent>
     <form id="registrationForm" @submit.prevent="handleSubmit">
-      <UserFormBody
-        v-model:firstName="firstName"
-        v-model:lastName="lastName"
-        v-model:email="email"
-        v-model:phone="phone"
-        v-model:password="password"
-        v-model:passwordConfirmation="passwordConfirmation"
-      />
+      <UserFormBody v-model:firstName="firstName" v-model:lastName="lastName" v-model:email="email" v-model:phone="phone"
+        v-model:password="password" v-model:passwordConfirmation="passwordConfirmation" />
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
   </CenteredContent>

@@ -1,9 +1,9 @@
-import api from './index';
+import api from "./index";
 
 export const getUsers = () => {
-    return api.get('/users');
-}
+  return api.get("/users");
+};
 
 export const deleteUser = (userId) => {
-    return api.delete(`/users/${userId}`);
-}
+  return api.delete(`/users/${userId}`);
+};

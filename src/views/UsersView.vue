@@ -109,21 +109,10 @@ const addUser = async () => {
     </table>
     <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addUserModal">Add User</button>
 
-    <Modal
-        ref="modalRef"
-        modalId="addUserModal"
-        modalTitle="Add User"
-        sucessBtn="Add"
-        @modalSuccessClick="addUser"
-    >
+    <Modal ref="modalRef" modalId="addUserModal" modalTitle="Add User" sucessBtn="Add" @modalSuccessClick="addUser">
         <form ref="form">
-            <UserFormBody
-                v-model:firstName="firstName"
-                v-model:lastName="lastName"
-                v-model:email="email"
-                v-model:phone="phone"
-                v-model:password="password"
-                v-model:passwordConfirmation="passwordConfirmation" />
+            <UserFormBody v-model:firstName="firstName" v-model:lastName="lastName" v-model:email="email"
+                v-model:phone="phone" v-model:password="password" v-model:passwordConfirmation="passwordConfirmation" />
         </form>
     </Modal>
 </template>

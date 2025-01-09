@@ -8,7 +8,15 @@ export function runMiddlewares(middlewares, to, from, next) {
     }
 
     const middleware = stack.shift();
-    middleware(to, from, runNext);
+    middleware(to, from, (pathOrNext) => {
+      if (typeof pathOrNext === "string") {
+        next(pathOrNext);
+      } else if (pathOrNext === false) {
+        next(false);
+      } else {
+        runNext();
+      }
+    });
   };
 
   runNext();
