@@ -1,27 +1,30 @@
-import js from '@eslint/js'
-import pluginVue from 'eslint-plugin-vue'
-import pluginCypress from 'eslint-plugin-cypress/flat'
+import globals from "globals";
+import pluginJs from "@eslint/js";
+import pluginVue from "eslint-plugin-vue";
 
+/** @type {import('eslint').Linter.Config[]} */
 export default [
+  { files: ["**/*.{js,mjs,cjs,vue}"] },
+  { languageOptions: { globals: { ...globals.browser, bootstrap: "readonly" } } },
+  pluginJs.configs.recommended,
+  ...pluginVue.configs["flat/essential"],
+
   {
-    name: 'app/files-to-lint',
-    files: ['**/*.{js,mjs,jsx,vue}'],
+    files: ["cypress/**/*.js", "cypress/**/*.ts", "cypress/**/*.vue"],
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+        describe: "readonly",
+        it: "readonly",
+        cy: "readonly",
+        Cypress: "readonly",
+      },
+    },
   },
 
   {
-    name: 'app/files-to-ignore',
-    ignores: ['**/dist/**', '**/dist-ssr/**', '**/coverage/**'],
+    rules: {
+      "vue/multi-word-component-names": "off",
+    },
   },
-
-  js.configs.recommended,
-  ...pluginVue.configs['flat/essential'],
-  
-  {
-    ...pluginCypress.configs.recommended,
-    files: [
-      ''**/__tests__/*.{cy,spec}.{js,ts,jsx,tsx}',',
-      'cypress/e2e/**/*.{cy,spec}.{js,ts,jsx,tsx}',
-      'cypress/support/**/*.{js,ts,jsx,tsx}'
-    ],
-  },
-]
+];

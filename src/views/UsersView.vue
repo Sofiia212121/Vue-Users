@@ -53,9 +53,8 @@ const addUser = async () => {
         return;
     }
 
-    let response;
     try {
-        response = await register({
+        await register({
             firstName: firstName.value,
             lastName: lastName.value,
             email: email.value,
