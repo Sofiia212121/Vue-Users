@@ -20,7 +20,7 @@ const handleSubmit = async () => {
     });
     alert('Login successfully!');
   } catch (error) {
-    alert(error.response.data?.errorMessage);
+    alert(error?.response?.data?.errorMessage);
     return;
   }
 

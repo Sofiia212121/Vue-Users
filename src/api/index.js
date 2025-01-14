@@ -17,10 +17,14 @@ api.interceptors.request.use((config) => {
 // обробка загальних помилок і помилок валідації
 
 // перехоплювач відповідей
-// api.interceptors.response.use(response => {
+// api.interceptors.response.use(
+//   (response) => {
 //     return response;
-// }, error => {
+//   },
+//   (error) => {
+//     console.log(error);
 //     return Promise.reject(error);
-// });
+//   }
+// );
 
 export default api;

@@ -31,7 +31,7 @@ const handleSubmit = async () => {
       password: password.value
     });
   } catch (error) {
-    alert(error.response.data?.errorMessage);
+    alert(error?.response?.data?.errorMessage);
     return;
   }
 
