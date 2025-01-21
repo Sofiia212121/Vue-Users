@@ -17,14 +17,17 @@ api.interceptors.request.use((config) => {
 // обробка загальних помилок і помилок валідації
 
 // перехоплювач відповідей
-// api.interceptors.response.use(
-//   (response) => {
-//     return response;
-//   },
-//   (error) => {
-//     console.log(error);
-//     return Promise.reject(error);
-//   }
-// );
+api.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    if (error.status === 401) {
+      const authStore = useAuthStore();
+      authStore.logout();
+    }
+    return Promise.reject(error);
+  }
+);
 
 export default api;
