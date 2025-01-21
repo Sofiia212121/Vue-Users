@@ -57,8 +57,8 @@ defineEmits(['update:firstName', 'update:lastName', 'update:email', 'update:phon
         </div>
         <div class="mb-3">
             <label class="form-label">Phone</label>
-            <input type="tel" class="form-control" :value="phone" @input="$emit('update:phone', $event.target.value)"
-                required />
+            <input v-mask="'+38 (0##) ###-##-##'" type="tel" class="form-control" :value="phone"
+                @input="$emit('update:phone', $event.target.value)" required />
         </div>
         <div v-if="!userId" class="mb-3">
             <label class="form-label">Password</label>
