@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps, defineEmits } from 'vue';
+import { ref, defineProps, defineEmits, watch } from 'vue';
 
 defineProps({
     userId: {
@@ -42,32 +42,32 @@ defineEmits(['update:firstName', 'update:lastName', 'update:email', 'update:phon
     <div>
         <div class="mb-3">
             <label class="form-label">First Name</label>
-            <input type="text" class="form-control" :value="firstName"
+            <input type="text" class="form-control" :value="firstName" v-validation="'firstName'"
                 @input="$emit('update:firstName', $event.target.value)" required />
         </div>
         <div class="mb-3">
             <label class="form-label">Last Name</label>
-            <input type="text" class="form-control" :value="lastName" @input="$emit('update:lastName', $event.target.value)"
-                required />
+            <input type="text" class="form-control" :value="lastName" v-validation="'lastName'"
+                @input="$emit('update:lastName', $event.target.value)" required />
         </div>
         <div class="mb-3">
             <label class="form-label">Email</label>
-            <input type="email" class="form-control" :value="email" @input="$emit('update:email', $event.target.value)"
-                required />
+            <input type="email" class="form-control" :value="email" v-validation="'email'"
+                @input="$emit('update:email', $event.target.value)" required />
         </div>
         <div class="mb-3">
             <label class="form-label">Phone</label>
-            <input v-mask="'+38 (0##) ###-##-##'" type="tel" class="form-control" :value="phone"
+            <input v-mask="'+38 (0##) ###-##-##'" type="tel" class="form-control" :value="phone" v-validation="'phone'"
                 @input="$emit('update:phone', $event.target.value)" required />
         </div>
         <div v-if="!userId" class="mb-3">
             <label class="form-label">Password</label>
-            <input type="password" class="form-control" :value="password"
+            <input type="password" class="form-control" :value="password" v-validation="'password'"
                 @input="$emit('update:password', $event.target.value)" required />
         </div>
         <div v-if="!userId" class="mb-3">
             <label class="form-label">Confirm Password</label>
-            <input type="password" class="form-control" :value="passwordConfirmation"
+            <input type="password" class="form-control" :value="passwordConfirmation" v-validation="'passwordConfirmation'"
                 @input="$emit('update:passwordConfirmation', $event.target.value)" required />
         </div>
     </div>

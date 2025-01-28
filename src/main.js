@@ -3,6 +3,7 @@
 import { createApp } from "vue";
 import { createPinia } from "pinia";
 import VueTheMask from "vue-the-mask";
+import validationDirective from "@/directives/validation";
 
 import App from "./App.vue";
 import router from "./router";
@@ -13,4 +14,5 @@ app.use(createPinia());
 app.use(router);
 app.use(VueTheMask);
 
+app.directive("validation", validationDirective);
 app.mount("#app");

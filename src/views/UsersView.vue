@@ -33,7 +33,7 @@ const getUsersList = async () => {
         const response = await getUsers();
         users.value = response.data;
     } catch (error) {
-        alert(`Error fetching users: ${error}`);
+        return;
     }
 };
 
@@ -45,7 +45,6 @@ const userDelete = async (userId) => {
     try {
         await deleteUser(userId);
     } catch (error) {
-        alert(error?.response?.data?.errorMessage);
         return;
     }
 
@@ -73,7 +72,6 @@ const addUser = async () => {
             password: newPassword.value,
         });
     } catch (error) {
-        alert(error?.response?.data?.errorMessage);
         return;
     }
 
@@ -95,7 +93,6 @@ const editUser = async () => {
             phone: phone.value,
         });
     } catch (error) {
-        alert(error?.response?.data?.message);
         return;
     }
 
@@ -112,7 +109,6 @@ const changePassword = async () => {
             passwordConfirmation: passwordConfirmation.value
         });
     } catch (error) {
-        alert(error?.response?.data?.errorMessage);
         return;
     }
 
@@ -168,27 +164,16 @@ onMounted(getUsersList);
 <template>
     <Modal ref="addUserModalRef" modalId="addUserModal" modalTitle="Add User" sucessBtn="Add" @modalSuccessClick="addUser">
         <form ref="addUserForm">
-            <UserFormBody
-                v-model:firstName="firstName"
-                v-model:lastName="lastName"
-                v-model:email="email"
-                v-model:phone="phone"
-                v-model:password="newPassword"
-                v-model:passwordConfirmation="passwordConfirmation"
-            />
+            <UserFormBody v-model:firstName="firstName" v-model:lastName="lastName" v-model:email="email"
+                v-model:phone="phone" v-model:password="newPassword" v-model:passwordConfirmation="passwordConfirmation" />
         </form>
     </Modal>
 
     <Modal ref="editUserModalRef" modalId="editUserModal" modalTitle="Edit User" sucessBtn="Save"
         @modalSuccessClick="editUser">
         <form ref="editUserForm">
-            <UserFormBody
-                v-model:firstName="firstName"
-                v-model:lastName="lastName"
-                v-model:email="email"
-                v-model:phone="phone"
-                v-model:userId="selectedUserId"
-            />
+            <UserFormBody v-model:firstName="firstName" v-model:lastName="lastName" v-model:email="email"
+                v-model:phone="phone" v-model:userId="selectedUserId" />
         </form>
     </Modal>
 

@@ -5,7 +5,6 @@ import CenteredContent from './../components/CenteredContent.vue';
 import { register } from '@/api/auth';
 import UserFormBody from '@/components/UserFormBody.vue';
 
-// todo: get the next 6 vars from the child component
 const firstName = ref('');
 const lastName = ref('');
 const email = ref('');
@@ -31,7 +30,6 @@ const handleSubmit = async () => {
       password: password.value
     });
   } catch (error) {
-    alert(error?.response?.data?.errorMessage);
     return;
   }
 
